@@ -1,12 +1,11 @@
-mod scanner;
-mod args;
+mod dir_scanner;
 
-use crate::scanner::{to_report, walk};
-use crate::args::get_root;
+use dir_scanner::{errors, scanner};
+use dir_scanner::args::get_root;
 
 fn main() {
     let root_dir = get_root();
-    let (dir, err) = walk(root_dir);
-    to_report(dir);
-    let _ = err;
+    let (dir, err) = scanner::walk(root_dir);
+    scanner::to_report(dir);
+    errors::to_report(err);
 }
