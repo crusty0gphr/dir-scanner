@@ -1,14 +1,14 @@
 use walkdir::{DirEntry, WalkDir};
 
-pub fn walk(root_dir: String) -> (Vec<DirEntry>,  Vec<walkdir::Error>) {
+pub fn walk(root_dir: String) -> (Vec<DirEntry>, Vec<walkdir::Error>) {
     let mut entries: Vec<DirEntry> = vec![];
     let mut errors: Vec<walkdir::Error> = vec![];
     let walk = WalkDir::new(root_dir);
 
     for entry in walk.into_iter().filter_entry(skip) {
         match entry {
-            Ok(s) =>  entries.push(s),
-            Err(err) => errors.push(err)
+            Ok(s) => entries.push(s),
+            Err(err) => errors.push(err),
         }
     }
     (entries, errors)
